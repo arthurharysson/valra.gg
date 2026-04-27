@@ -15,6 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Valra.gg",
   description: "O hub definitivo para jogadores de Valorant — stats, esports e pro settings em um só lugar.",
+  icons: {
+    icon: [
+      { url: "/images/logo/logo-v.png", sizes: "32x32", type: "image/png" },
+      { url: "/images/logo/logo-v.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: "/images/logo/logo-v.png",
+  },
 };
 
 export default function RootLayout({
