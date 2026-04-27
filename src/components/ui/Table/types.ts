@@ -47,6 +47,7 @@ export interface TableProps<T extends object> {
   loading?: boolean
   emptyMessage?: string
   onPageChange?: (page: number) => void
+  getRowClassName?: (row: T, index: number) => string
   tableOptions?: {
     useServerPagination?: boolean
     externalPage?: number

@@ -43,6 +43,7 @@ export function Table<T extends object>({
   loading = false,
   emptyMessage = 'Nenhum dado encontrado',
   onPageChange,
+  getRowClassName,
   tableOptions,
 }: TableProps<T>) {
   const {
@@ -121,7 +122,7 @@ export function Table<T extends object>({
               paginated.map((row, i) => (
                 <tr
                   key={`row-${i}`}
-                  className="border-b border-white/[0.05] hover:bg-white/[0.03] transition-colors duration-150"
+                  className={`border-b border-white/[0.05] hover:bg-white/[0.03] transition-colors duration-150 ${getRowClassName?.(row, i) ?? ''}`}
                 >
                   {columns.map((col, j) => (
                     <td
