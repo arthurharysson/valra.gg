@@ -77,7 +77,7 @@ export function SearchBar({
         onBlur={() => setFocused(false)}
         placeholder={placeholder}
         disabled={disabled}
-        className="flex-1 bg-transparent text-sm text-white placeholder:text-gray-600 outline-none disabled:cursor-not-allowed min-w-0"
+        className="flex-1 bg-transparent text-sm text-black placeholder:text-gray-600 outline-none disabled:cursor-not-allowed min-w-0"
       />
 
       {/* Botão clear */}

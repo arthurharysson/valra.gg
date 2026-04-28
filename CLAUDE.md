@@ -112,5 +112,6 @@ As skills ficam em `.claude/skills/{nome}/SKILL.md` e são invocadas com `/{nome
 | `/task-manager` | workflow | Gerencia o backlog de tasks do TASKS.md |
 | `/create-component` | workflow | Cria componentes React seguindo o padrão do projeto |
 | `/create-skill` | utility | Cria nova skill seguindo o padrão estabelecido |
+| `/create-service` | workflow | Cria um service em `src/services/` com api, actions, types e schema |
 
 Para criar uma nova skill: `/create-skill <nome> [workflow|utility]`

@@ -1,6 +1,7 @@
 'use client'
 
-import { Calendar, Globe, Gamepad2, ArrowRight } from 'lucide-react'
+import { Gamepad2, ArrowRight } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { CardTopRanking } from '@/components/ui/CardTopRanking'
 import { SearchBar } from '@/components/ui/SearchBar'
 
@@ -38,6 +39,14 @@ const mockNews = [
 ]
 
 export default function HomePage() {
+  const router = useRouter()
+
+  function handleSearch(query: string) {
+    const [name, tag] = query.trim().split('#')
+    if (!name?.trim() || !tag?.trim()) return
+    router.push(`/profile/${encodeURIComponent(name.trim())}/${encodeURIComponent(tag.trim())}`)
+  }
+
   return (
     <div className="relative flex flex-col flex-1 overflow-hidden min-h-screen">
 
@@ -77,30 +86,11 @@ export default function HomePage() {
           {/* Search bar centralizada */}
           <div className="w-full max-w-xl">
             <SearchBar
-              placeholder="Buscar Agente ou Jogador, ex: player#BR1 ou Sage"
+              placeholder="Buscar jogador, ex: MIBR Mazino#MIBR"
+              onSearch={handleSearch}
               className="h-12 bg-white/90 border-white/90 backdrop-blur-sm rounded-xl"
             />
           </div>
-
-          {/* Divider "ou" */}
-          <div className="flex items-center gap-4 w-full max-w-xl -my-2">
-            <div className="flex-1 h-px bg-white/[0.12]" />
-            <span className="text-gray-500 text-xs font-medium">ou</span>
-            <div className="flex-1 h-px bg-white/[0.12]" />
-          </div>
-
-          {/* Botão de login Riot ID */}
-          <button
-            type="button"
-            className="flex items-center justify-center gap-2.5 h-12 px-10 rounded-xl bg-[#FF4655] hover:bg-[#e03e4d] text-white font-bold text-sm transition-all duration-200 shadow-[0_4px_24px_rgba(255,70,85,0.45)] w-full max-w-xl cursor-pointer"
-          >
-            <Gamepad2 size={18} />
-            Entrar com Riot ID
-          </button>
-          <p className="text-[11px] text-gray-600 -mt-5">
-            *Ao entrar, você reconhece que seu perfil se torna público.{' '}
-            <span className="underline cursor-pointer hover:text-gray-400 transition-colors">Tornar privado</span>.
-          </p>
 
           {/* Global Top 3 */}
           <div className="flex flex-col items-center gap-5 mt-4">
