@@ -28,7 +28,7 @@ export class ApiError extends Error {
 }
 
 export function handleZodError(error: z.ZodError): never {
-  const errors = error.errors.reduce<Record<string, string[]>>((acc, issue) => {
+  const errors = error.issues.reduce<Record<string, string[]>>((acc, issue) => {
     const key = issue.path.join('.')
     if (!acc[key]) acc[key] = []
     acc[key].push(issue.message)

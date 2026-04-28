@@ -15,6 +15,11 @@ export interface ComputedStats {
   kpr: string
   winRate: number
   hsRate: number
+  bsRate: number
+  lsRate: number
+  headshotCount: number
+  bodyshotCount: number
+  legshotCount: number
   ddDelta: number
   kills: number
   deaths: number
@@ -51,14 +56,19 @@ export function computePlayerStats(matches: Match[], puuid: string): ComputedSta
   const shots = headshots + bodyshots + legshots
 
   return {
-    acs:     rounds > 0 ? Math.round(score / rounds)                        : 0,
-    adr:     rounds > 0 ? Math.round(damageMade / rounds)                   : 0,
-    kd:      deaths > 0 ? (kills / deaths).toFixed(2)                       : kills.toFixed(2),
-    kad:     deaths > 0 ? ((kills + assists) / deaths).toFixed(2)           : (kills + assists).toFixed(2),
-    kpr:     rounds > 0 ? (kills / rounds).toFixed(2)                       : '0.00',
-    winRate: total  > 0 ? Math.round((wins / total) * 100)                  : 0,
-    hsRate:  shots  > 0 ? Math.round((headshots / shots) * 100)             : 0,
-    ddDelta: rounds > 0 ? Math.round((damageMade - damageReceived) / rounds): 0,
+    acs:            rounds > 0 ? Math.round(score / rounds)                         : 0,
+    adr:            rounds > 0 ? Math.round(damageMade / rounds)                    : 0,
+    kd:             deaths > 0 ? (kills / deaths).toFixed(2)                        : kills.toFixed(2),
+    kad:            deaths > 0 ? ((kills + assists) / deaths).toFixed(2)            : (kills + assists).toFixed(2),
+    kpr:            rounds > 0 ? (kills / rounds).toFixed(2)                        : '0.00',
+    winRate:        total  > 0 ? Math.round((wins / total) * 100)                   : 0,
+    hsRate:         shots  > 0 ? Math.round((headshots / shots) * 100)              : 0,
+    bsRate:         shots  > 0 ? Math.round((bodyshots / shots) * 100)              : 0,
+    lsRate:         shots  > 0 ? Math.round((legshots  / shots) * 100)              : 0,
+    ddDelta:        rounds > 0 ? Math.round((damageMade - damageReceived) / rounds) : 0,
+    headshotCount: headshots,
+    bodyshotCount: bodyshots,
+    legshotCount:  legshots,
     kills, deaths, assists, wins, total, totalRounds: rounds,
   }
 }
